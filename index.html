@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body,
+      html {
+        width: 100vw;
+        height: 100vh;
+        font-family: "Poppins", sans-serif;
+        background-color: rgb(218, 132, 11);
+       
+      }
+
+    
+      nav {
+        display: flex;
+        width: 100vw;
+        padding: 0 20px;
+        height: 100px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      a {
+        text-decoration: none;
+        margin-left: 10px;
+      }
+      nav img {
+        width: 60px;
+      }
+      .box {
+        width: 100vw;
+        height: calc(100vh - 100px);
+        display: flex;
+        position: relative;
+      }
+      .left {
+        width: 50%;
+        height: 100%;
+        /* background-color: red; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .left > h1 {
+        text-align: center;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: 700;
+        font-size: 2rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+      }
+      form input {
+        text-align: center;
+        padding: 5px 10px;
+        font-size: 1.2rem;
+      }
+      form button {
+        padding: 5px 10px;
+        cursor: pointer;
+        background-color: skyblue;
+        font-size: 1rem;
+        /* border: 2px solid black; */
+        border-radius: 4px;
+      }
+      .right {
+        width: 50%;
+        height: 100%;
+        /* background-color: rgb(14, 180, 222); */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .bounce {
+        animation: bounce 1s infinite alternate;
+      }
+
+      @keyframes bounce {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .video-container {
+        display: none;
+      }
+
+      .video-container.show {
+        display: block;
+      }
+
+      .video-container video {
+        width: 100%;
+        height: 100%;
+      }
+
+      @media screen and (max-width: 992px) {
+        /* body {
+          background-color: blue;
+        } */
+      }
+
+      /* On screens that are 600px or less, set the background color to olive */
+      @media screen and (max-width: 600px) {
+        /* body {
+          background-color: olive;
+        } */
+
+        .left{
+          width: 100%;
+          height: 50%;
+        }
+        .right{
+          width: 100%;
+          height: 50%;
+        }
+        .right img {
+          width: 350px;
+          /* border-radius: 80%; */
+
+        }
+        .box{
+          flex-direction: column-reverse;
+        }
+    
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <header>
+        <nav>
+          <img src="logo.png" alt="logo" />
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <div class="box">
+        <div class="left">
+          <h1>What's Your Future ?</h1>
+          <form action="" onsubmit="showVideo()">
+            <label for="name">
+              <input type="text" placeholder="Enter your name" required />
+            </label>
+
+            <input type="text" placeholder="Enter your rashi" required />
+            <button id="submitBtn" type="button" onclick="showVideo()">
+              Let's Check
+            </button>
+          </form>
+        </div>
+        <div class="right">
+          <img src="hero.jpg" width="500" alt="Initial Image" class="bounce" />
+          <div class="video-container" id="videoContainer">
+            <video controls autoplay loop>
+              <source
+                src="Jobless Engineer   Funny Engineering Video   Engineering Meme   Engineering Jokes   We Are Engineers.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showVideo() {
+        const initialImage = document.querySelector(".right img");
+        const videoContainer = document.querySelector(".video-container");
+        const name = document.querySelector("input");
+        console.log(name.value);
+        // if (name.value) {
+        //   console.log(name.value);
+        // }
+
+        // Hide initial image and show video container
+
+        if (name.value) {
+          initialImage.classList.remove("bounce");
+          initialImage.style.display = "none";
+          videoContainer.classList.add("show");
+        } else {
+          alert("please enter details !!");
+        }
+      }
+    </script>
+  </body>
+</html>

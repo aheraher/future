@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Player App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #nameInput, #submitBtn {
+      margin-bottom: 10px;
+    }
+
+    #videoContainer {
+      display: none;
+      position: relative;
+    }
+
+    #loadingSpinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    <label for="nameInput">Enter Your Name:</label>
+    <input type="text" id="nameInput" />
+    <button id="submitBtn" onclick="handleSubmit()">Submit</button>
+
+    <div id="videoContainer">
+      <div id="loadingSpinner"></div>
+      <video id="myVideo" width="640" height="360"  controls>
+        <source src="Jobless Engineer   Funny Engineering Video   Engineering Meme   Engineering Jokes   We Are Engineers.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <script>
+    function handleSubmit() {
+      const nameInput = document.getElementById('nameInput');
+      const videoContainer = document.getElementById('videoContainer');
+      const loadingSpinner = document.getElementById('loadingSpinner');
+      
+      if (nameInput.value.trim() !== '') {
+        loadingSpinner.style.display = 'block';
+
+        setTimeout(() => {
+          // Show video container and play video after 2 seconds
+          loadingSpinner.style.display = 'none';
+          videoContainer.style.display = 'block';
+          const myVideo = document.getElementById('myVideo');
+          myVideo.play();
+        }, 2000);
+      }
+    }
+  </script>
+
+</body>
+</html>
